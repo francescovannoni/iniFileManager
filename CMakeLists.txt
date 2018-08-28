@@ -3,4 +3,4 @@ project(laboratorio)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(laboratorio main.cpp)
+add_executable(laboratorio main.cpp iniFileManager.cpp iniFileManager.h)
