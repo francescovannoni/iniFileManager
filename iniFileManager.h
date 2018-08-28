@@ -11,9 +11,14 @@ using namespace std;
 class iniFileManager {
 public:
     iniFileManager(string fileName);
-    string getStringElement (string keyName);
-    int getIntElement (string keyName);
-    float getFloatElement (string keyName);
+    string getStringElement (string section, string keyName);
+    int getIntElement (string section, string keyName);
+    float getFloatElement (string section, string keyName);
+
+    void setStringElement (string section, string keyName, string newElement);
+    void setFloatElement (string section, string keyName, float newElement);
+    void setBoolElement (string section, string keyName, bool  newElement);
+
 
 
 
