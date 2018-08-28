@@ -11,6 +11,11 @@ using namespace std;
 class iniFileManager {
 public:
     iniFileManager(string fileName);
+    string getStringElement (string keyName);
+    int getIntElement (string keyName);
+    float getFloatElement (string keyName);
+
+
 
     virtual ~iniFileManager();
 
