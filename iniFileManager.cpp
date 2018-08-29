@@ -19,6 +19,8 @@ string iniFileManager::getStringElement(string section, string parameter) {
 }
 
 int iniFileManager::getIntElement(string section, string parameter) {
+    for (auto &it : file)
+        return
 }
 
 float iniFileManager::getFloatElement(string section, string parameter) {
@@ -48,37 +50,50 @@ void iniFileManager::setBoolValue(string section, string parameter, bool newValu
         file[section][parameter] = "false";
 }
 
-bool iniFileManager::addSection(string sectionName) {
-    return false;
+void iniFileManager::addSection(string sectionName) {
+    file[sectionName];
 }
 
-string iniFileManager::getSections() {
-    return std::__cxx11::string();
+
+void iniFileManager::addParameter(string section, string parameterName) {
+    file[section][parameterName] = "null";
 }
 
-bool iniFileManager::addParameter(string parameterName) {
-    return false;
+
+void iniFileManager::putToNull(string section, string parameter) {
+    file[section][parameter] = "null";
 }
 
-void iniFileManager::getParameter() {
-
+bool iniFileManager::removeSection(string section) {
+    bool found = false;
+    for (auto & it: file) {
+        if (it.first == section)
+            found = true;
+    }
+    if (found){
+        file.erase(section);
+    return true;
+    }
+    else
+        return false;
 }
 
-bool iniFileManager::deleteInt(string section, string parameter, int valueDeleted) {
-    return false;
+bool iniFileManager::removeParameter(string section, string parameter) {
+    bool found = false;
+    for (auto & it: file[section]) {
+        if (it.first == parameter)
+            found = true;
+    }
+    if (found){
+        file[section].erase(parameter);
+        return true;
+    }
+    else
+        return false;
+}
 }
 
-bool iniFileManager::deleteString(string section, string parameter, string valueDeleted) {
-    return false;
-}
 
-bool iniFileManager::deleteBool(string section, string parameter, bool valueDeleted) {
-    return false;
-}
-
-bool iniFileManager::deleteFloat(string section, string parameter, float valueDeleted) {
-    return false;
-}
 
 
 

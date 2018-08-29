@@ -24,16 +24,13 @@ public:
     void setFloatValue (string section, string parameter, float newValue);
     void setBoolValue(string section, string parameter, bool newValue);
 
-    bool addSection (string sectionName);
-    string getSections();
+    bool removeSection(string section);
+    bool removeParameter(string section, string parameter);
 
-    bool addParameter(string parameterName);
-    void getParameter();
+    void addSection (string sectionName);
+    void addParameter(string section, string parameterName);
 
-    bool deleteInt(string section, string parameter, int valueDeleted);
-    bool deleteString(string section, string parameter, string valueDeleted);
-    bool deleteBool(string section, string parameter, bool valueDeleted);
-    bool deleteFloat(string section, string parameter, float valueDeleted);
+    void putToNull(string section, string parameter);
 
     virtual ~iniFileManager();
 
