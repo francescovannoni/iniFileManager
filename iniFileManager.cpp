@@ -29,15 +29,57 @@ string iniFileManager::getValue(string section, string parameter) {
 
 
 void iniFileManager::setStringValue(string section, string parameter, string newValue) {
-file[section][parameter] = newValue;
+    bool found = false;
+    for (auto&it : file[section]) {
+        if (it.first == parameter) {
+            found = true;
+        }}
+    if (found == true) {
+        std::cout << "ATTENZIONE: più valori inseriti per il parametro " << parameter
+                  << " premere s per continuare e inserire l'ultimo valore immesso " << std::endl;
+        string substitute;
+        std::cin >> substitute;
+        if (substitute == "s")
+            file[section][parameter] = newValue;
+    }
+    else
+        file[section][parameter] = newValue;
 }
 
 void iniFileManager::setIntValue(string section, string parameter, int newValue) {
-    file[section][parameter] = to_string(newValue);
+    bool found = false;
+    for (auto&it : file[section]) {
+        if (it.first == parameter) {
+            found = true;
+        }}
+        if (found == true) {
+            std::cout << "ATTENZIONE: più valori inseriti per il parametro "<< parameter << " premere s per continuare e inserire l'ultimo valore immesso " << std::endl;
+            string substitute;
+            std::cin >> substitute;
+            if (substitute == "s")
+                file[section][parameter] = to_string(newValue);
+        }
+        else
+            file[section][parameter] = to_string(newValue);
+
 }
 
 void iniFileManager::setFloatValue(string section, string parameter, float newValue) {
-    file[section][parameter] = to_string(newValue);
+    bool found = false;
+    for (auto&it : file[section]) {
+        if (it.first == parameter) {
+            found = true;
+        }}
+    if (found == true) {
+        std::cout << "ATTENZIONE: più valori inseriti per il parametro "<< parameter << " premere s per continuare e inserire l'ultimo valore immesso " << std::endl;
+        string substitute;
+        std::cin >> substitute;
+        if (substitute == "s")
+            file[section][parameter] = to_string(newValue);
+    }
+    else
+        file[section][parameter] = to_string(newValue);
+
 }
 
 void iniFileManager::setBoolValue(string section, string parameter, bool newValue) {
@@ -112,6 +154,8 @@ void iniFileManager::printAll() {
             std::cout << secondIterator.first << "=" << secondIterator.second << std::endl;
     }
 }
+
+
 
 
 
