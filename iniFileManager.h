@@ -34,6 +34,7 @@ public:
     void printValue(string section, string parameter);
     void printAll();
 
+    void reset();
 
     void putToNull(string section, string parameter);
 

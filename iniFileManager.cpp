@@ -157,6 +157,14 @@ void iniFileManager::printAll() {
     }
 }
 
+void iniFileManager::reset() {
+    std::cout << "Vuoi davvero eliminare tutto? [S/N] " << std::endl;
+    string clear;
+    cin >> clear;
+    if (clear == "S")
+    file.clear();
+}
+
 
 
 
