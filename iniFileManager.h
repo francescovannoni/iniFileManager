@@ -9,7 +9,7 @@
 #include <map>
 
 using namespace std;
-template <typename T>
+
 class iniFileManager {
 public:
     iniFileManager(string fileName);
@@ -19,10 +19,10 @@ public:
     float getFloatElement (string section, string parameter);
     bool getBool (string section, string parameter);
 
-    void setStringElement (string section, string parameter, T newValue);
-    void setIntElement (string section, string parameter, T newValue);
-    void setFloatElement (string section, string parameter, T newValue);
-    void setBoolElement (string section, string parameter, T newValue);
+    void setStringValue (string section, string parameter, string newValue);
+    void setIntValue (string section, string parameter, int newValue);
+    void setFloatValue (string section, string parameter, float newValue);
+    void setBoolValue(string section, string parameter, bool newValue);
 
     bool addSection (string sectionName);
     string getSections();
