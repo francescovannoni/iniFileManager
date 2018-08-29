@@ -1,17 +1,22 @@
 #include <iostream>
 #include "iniFileManager.h"
+using namespace std;
 
 int main() {
-    iniFileManager antonio("ciao");
-    antonio.setFloatValue("Nome", "Primo Numero", 5.7);
-    antonio.setFloatValue("Nome", "Terzo Numero", 5.9);
+    iniFileManager file("FirstProgram.ini");
+    std::cout << "File Name: " << file.getFileName() << std::endl;
 
+    file.setIntValue("Sezione 1", "Parametro 1", 14);
+    file.setFloatValue("Sezione 2", "Parametro 1", 3.14);
+    file.setBoolValue("Sezione 1", "Parametro 2", false);
+    file.setStringValue("Sezione 1", "Parametro 2", "Valore 1");
 
-    antonio.setFloatValue("Nome", "Terzo Numero", 7.8);
+    file.addSection("Sezione 3");
+    file.addParameter("Sezione 2", "Parametro 3");
+    file.putToNull("Sezione 2", "Parametro 1");
 
-    antonio.setIntValue("Cognome", "Numero Intero", 56);
-    antonio.setIntValue("Cognome", "Numero Intero", 59);
-
-    antonio.printAll();
+    file.printAll();
 
 }
+
+//occhio a put to null

@@ -53,7 +53,8 @@ void iniFileManager::setIntValue(string section, string parameter, int newValue)
             found = true;
         }}
         if (found == true) {
-            std::cout << "ATTENZIONE: più valori inseriti per il parametro "<< parameter << " premere s per continuare e inserire l'ultimo valore immesso " << std::endl;
+            std::cout << "ATTENZIONE: più valori inseriti per il parametro "<< parameter
+                      << " premere s per continuare e inserire l'ultimo valore immesso " << std::endl;
             string substitute;
             std::cin >> substitute;
             if (substitute == "s")
@@ -71,7 +72,8 @@ void iniFileManager::setFloatValue(string section, string parameter, float newVa
             found = true;
         }}
     if (found == true) {
-        std::cout << "ATTENZIONE: più valori inseriti per il parametro "<< parameter << " premere s per continuare e inserire l'ultimo valore immesso " << std::endl;
+        std::cout << "ATTENZIONE: più valori inseriti per il parametro "<< parameter
+                  << " premere s per continuare e inserire l'ultimo valore immesso " << std::endl;
         string substitute;
         std::cin >> substitute;
         if (substitute == "s")
@@ -132,13 +134,13 @@ bool iniFileManager::removeParameter(string section, string parameter) {
 }
 
 void iniFileManager::printSections() {
-    std::cout << "Sections:" << std::endl;
+    std::cout << "Sezioni:" << std::endl;
     for (auto &it:file)
         std::cout << it.first << std::endl;
 }
 
 void iniFileManager::printParameters(string section) {
-    std::cout << "Parameters:" << std::endl;
+    std::cout << "Parametri della sezione" << section<< ":" << std::endl;
     for (auto &it:file[section])
         std::cout << it.first << std::endl;
 }
@@ -151,7 +153,7 @@ void iniFileManager::printAll() {
     for (auto &it:file) {
         std::cout << "[" <<it.first << "]" << std::endl;
         for (auto &secondIterator : file[it.first])
-            std::cout << secondIterator.first << "=" << secondIterator.second << std::endl;
+            std::cout << secondIterator.first << " = " << secondIterator.second << std::endl;
     }
 }
 
