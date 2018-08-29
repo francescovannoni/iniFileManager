@@ -2,6 +2,7 @@
 // Created by frenk on 28/08/18.
 //
 
+#include <iostream>
 #include "iniFileManager.h"
 using namespace std;
 
@@ -14,24 +15,18 @@ iniFileManager::~iniFileManager() {
 
 }
 
-string iniFileManager::getStringElement(string section, string parameter) {
-    return std::__cxx11::string();
+void iniFileManager::setFileName(string fileName) {
+    this->fileName = fileName;
 }
 
-int iniFileManager::getIntElement(string section, string parameter) {
-    return stoi(file[section][parameter]);
+string iniFileManager::getFileName() {
+    return this->fileName;
 }
 
-float iniFileManager::getFloatElement(string section, string parameter) {
-    return stof(file[section][parameter]);
+string iniFileManager::getValue(string section, string parameter) {
+    return file[section][parameter];
 }
 
-bool iniFileManager::getBool(string section, string parameter) {
-    if (file[section][parameter] == "true")
-        return "true";
-    else
-        return "false";
-}
 
 void iniFileManager::setStringValue(string section, string parameter, string newValue) {
 file[section][parameter] = newValue;
@@ -93,10 +88,31 @@ bool iniFileManager::removeParameter(string section, string parameter) {
     else
         return false;
 }
+
+void iniFileManager::printSections() {
+    std::cout << "Sections:" << std::endl;
+    for (auto &it:file)
+        std::cout << it.first << std::endl;
+}
+
+void iniFileManager::printParameters(string section) {
+    std::cout << "Parameters:" << std::endl;
+    for (auto &it:file[section])
+        std::cout << it.first << std::endl;
+}
+
+void iniFileManager::printValue(string section, string parameter) {
+    std::cout << parameter << "=" << file[section][parameter] << std::endl;
+}
+
+void iniFileManager::printAll() {
+auto it =  file.begin();
+std::cout << it->first...
 }
 
 
 
 
+//add comment
 
 
