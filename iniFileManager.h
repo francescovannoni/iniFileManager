@@ -37,6 +37,7 @@ public:
     void reset();
 
     void putToNull(string section, string parameter);
+    int NumParameters(string section);
 
     virtual ~iniFileManager();
 

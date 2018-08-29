@@ -17,6 +17,7 @@ int main() {
 
     file.printAll();
 
-}
+    file.NumParameters("Sezione 3");
 
-//occhio a put to null
+
+}
