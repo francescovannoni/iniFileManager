@@ -19,16 +19,18 @@ string iniFileManager::getStringElement(string section, string parameter) {
 }
 
 int iniFileManager::getIntElement(string section, string parameter) {
-    for (auto &it : file)
-        return
+    return stoi(file[section][parameter]);
 }
 
 float iniFileManager::getFloatElement(string section, string parameter) {
-    return 0;
+    return stof(file[section][parameter]);
 }
 
 bool iniFileManager::getBool(string section, string parameter) {
-    return false;
+    if (file[section][parameter] == "true")
+        return "true";
+    else
+        return "false";
 }
 
 void iniFileManager::setStringValue(string section, string parameter, string newValue) {
