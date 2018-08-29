@@ -165,6 +165,16 @@ void iniFileManager::reset() {
     file.clear();
 }
 
+int iniFileManager::NumParameters(string section) {
+    int count = 0;
+    for (auto &it: file[section])
+        count ++;
+    std::cout << "" << std::endl;
+    std::cout << "Numero parametri di " << section << ": " << count << std::endl;
+}
+
+
+
 
 
 
