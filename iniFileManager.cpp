@@ -106,9 +106,16 @@ void iniFileManager::printValue(string section, string parameter) {
 }
 
 void iniFileManager::printAll() {
-auto it =  file.begin();
-std::cout << it->first...
+    for (auto &it:file) {
+        std::cout << "[" <<it.first << "]" << std::endl;
+        for (auto &secondIterator : file[it.first])
+            std::cout << secondIterator.first << "=" << secondIterator.second << std::endl;
+    }
 }
+
+
+
+
 
 
 
