@@ -14,9 +14,15 @@ class iniFileManager {
 public:
     iniFileManager(string fileName);
 
-    T& getValues (string section, string parameter);
+    string getStringElement (string section, string parameter);
+    int getIntElement (string section, string parameter);
+    float getFloatElement (string section, string parameter);
+    bool getBool (string section, string parameter);
 
-    void addValues (string section, string parameter, T newValue);
+    void setStringElement (string section, string parameter, T newValue);
+    void setIntElement (string section, string parameter, T newValue);
+    void setFloatElement (string section, string parameter, T newValue);
+    void setBoolElement (string section, string parameter, T newValue);
 
     bool addSection (string sectionName);
     string getSections();
@@ -34,7 +40,7 @@ public:
 
 private:
     string fileName;
-    map<string,map<string,T>> file;
+    map<string,map<string,string>> file;
 };
 
 
