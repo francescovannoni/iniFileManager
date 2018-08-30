@@ -36,7 +36,7 @@ TEST(iniFileManagerTest, BoolGetterSetterTest) {
     ASSERT_EQ(file.getValue("Sezione 3", "Parametro 1"), "false");
 }
 
-
+TEST
 
 
 
