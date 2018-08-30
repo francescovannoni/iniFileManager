@@ -1,2 +1,2 @@
 # iniFileManager
-class to write ad read ini files
+class to write and read ini files
