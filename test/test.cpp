@@ -3,7 +3,13 @@
 //
 #include "/home/frenk/CLionProjects/laboratorio/iniFileManager.cpp"
 #include "/home/frenk/CLionProjects/laboratorio/iniFileManager.h"
-#include "gtest/gtest.h"
+#include "/home/frenk/CLionProjects/laboratorio/test/lib/googletest/include/gtest/gtest.h"
+
+//constructor tester
+TEST(iniFileManagerTest, ConstructorTest){
+    iniFileManager constructorTester("iniFile.ini");
+    ASSERT_EQ(constructorTester.getFileName(), "iniFile.ini");
+}
 
 //getters, setters tests
 TEST(iniFileManagerTest, StringGetterSetterTest) {
@@ -29,6 +35,9 @@ TEST(iniFileManagerTest, BoolGetterSetterTest) {
     file.setBoolValue("Sezione 3", "Parametro 1", false);
     ASSERT_EQ(file.getValue("Sezione 3", "Parametro 1"), "false");
 }
+
+
+
 
 
 
