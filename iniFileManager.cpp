@@ -34,7 +34,7 @@ void iniFileManager::setStringValue(string section, string parameter, string new
         if (it.first == parameter) {
             found = true;
         }}
-    if (found == true) {
+    if (found) {
         std::cout << "ATTENZIONE: più valori inseriti per il parametro " << parameter
                   << " premere s per continuare e inserire l'ultimo valore immesso " << std::endl;
         string substitute;
@@ -52,7 +52,7 @@ void iniFileManager::setIntValue(string section, string parameter, int newValue)
         if (it.first == parameter) {
             found = true;
         }}
-        if (found == true) {
+        if (found) {
             std::cout << "ATTENZIONE: più valori inseriti per il parametro "<< parameter
                       << " premere s per continuare e inserire l'ultimo valore immesso " << std::endl;
             string substitute;
@@ -71,7 +71,7 @@ void iniFileManager::setFloatValue(string section, string parameter, float newVa
         if (it.first == parameter) {
             found = true;
         }}
-    if (found == true) {
+    if (found) {
         std::cout << "ATTENZIONE: più valori inseriti per il parametro "<< parameter
                   << " premere s per continuare e inserire l'ultimo valore immesso " << std::endl;
         string substitute;
@@ -170,7 +170,7 @@ int iniFileManager::NumParameters(string section) {
     for (auto &it: file[section])
         count ++;
     std::cout << "" << std::endl;
-    std::cout << "Numero parametri di " << section << ": " << count << std::endl;
+    return count;
 }
 
 

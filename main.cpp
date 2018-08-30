@@ -17,7 +17,8 @@ int main() {
 
     file.printAll();
 
-    file.NumParameters("Sezione 3");
+    int numberOfParameters = file.NumParameters("Sezione 3");
+    std::cout << "Numero parametri della terza sezione: " << numberOfParameters << std::endl;
 
 
 }
