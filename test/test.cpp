@@ -36,7 +36,33 @@ TEST(iniFileManagerTest, BoolGetterSetterTest) {
     ASSERT_EQ(file.getValue("Sezione 3", "Parametro 1"), "false");
 }
 
-TEST
+TEST(iniFileManagerTest, SectionsTest){
+ iniFileManager file("Prova.ini");
+ file.addSection("Sezione prova rimozione");
+ ASSERT_EQ(file.removeSection("Sezione prova rimozione"), true);
+}
+
+TEST(iniFileManagerTest, ParameterTest){
+    iniFileManager file("Prova.ini");
+    file.addParameter("Sezione", "Parametro");
+    ASSERT_EQ(file.removeParameter("Sezione", "Parametro" ), true);
+}
+
+TEST(iniFileManagerTest, PutToNullTest){
+    iniFileManager file("Prova.ini");
+    file.putToNull("Sezione 4", "Parametro 6");
+    ASSERT_EQ(file.getValue("Sezione 4", "Parametro 6"), "null");
+}
+
+TEST(iniFileManagerTest, NumParametersTest){
+    iniFileManager file("Prova.ini");
+    file.setStringValue("Sezione 4", "Parametro 6", "Valore stringa");
+    file.setIntValue("Sezione 4", "Parametro 8", 5);
+    ASSERT_EQ(file.numParameters("Sezione 4"), 2);
+}
+
+
+
 
 
 
