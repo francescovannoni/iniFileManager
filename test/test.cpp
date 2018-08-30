@@ -6,16 +6,16 @@
 #include "/home/frenk/CLionProjects/laboratorio/test/lib/googletest/include/gtest/gtest.h"
 
 //constructor tester
-TEST(iniFileManagerTest, ConstructorTest){
+TEST(iniFileManagerTest, ConstructorTest) {
     iniFileManager constructorTester("iniFile.ini");
     ASSERT_EQ(constructorTester.getFileName(), "iniFile.ini");
 }
 
 //getters, setters tests
 TEST(iniFileManagerTest, StringGetterSetterTest) {
-iniFileManager file("Prova.ini");
-file.setStringValue("Sezione 1", "Parametro 1", "valore 1");
-ASSERT_EQ(file.getValue("Sezione 1", "Parametro 1"), "Parametro 1");
+    iniFileManager file("Prova.ini");
+    file.setStringValue("Sezione 1", "Parametro 1", "valore 1");
+    ASSERT_EQ(file.getValue("Sezione 1", "Parametro 1"), "Parametro 1");
 }
 
 TEST(iniFileManagerTest, IntGetterSetterTest) {
@@ -36,25 +36,27 @@ TEST(iniFileManagerTest, BoolGetterSetterTest) {
     ASSERT_EQ(file.getValue("Sezione 3", "Parametro 1"), "false");
 }
 
-TEST(iniFileManagerTest, SectionsTest){
- iniFileManager file("Prova.ini");
- file.addSection("Sezione prova rimozione");
- ASSERT_EQ(file.removeSection("Sezione prova rimozione"), true);
+//add and remove section and parameter
+TEST(iniFileManagerTest, SectionsTest) {
+    iniFileManager file("Prova.ini");
+    file.addSection("Sezione prova rimozione");
+    ASSERT_EQ(file.removeSection("Sezione prova rimozione"), true);
 }
 
-TEST(iniFileManagerTest, ParameterTest){
+TEST(iniFileManagerTest, ParameterTest) {
     iniFileManager file("Prova.ini");
     file.addParameter("Sezione", "Parametro");
-    ASSERT_EQ(file.removeParameter("Sezione", "Parametro" ), true);
+    ASSERT_EQ(file.removeParameter("Sezione", "Parametro"), true);
 }
 
-TEST(iniFileManagerTest, PutToNullTest){
+
+TEST(iniFileManagerTest, PutToNullTest) {
     iniFileManager file("Prova.ini");
     file.putToNull("Sezione 4", "Parametro 6");
     ASSERT_EQ(file.getValue("Sezione 4", "Parametro 6"), "null");
 }
 
-TEST(iniFileManagerTest, NumParametersTest){
+TEST(iniFileManagerTest, NumParametersTest) {
     iniFileManager file("Prova.ini");
     file.setStringValue("Sezione 4", "Parametro 6", "Valore stringa");
     file.setIntValue("Sezione 4", "Parametro 8", 5);

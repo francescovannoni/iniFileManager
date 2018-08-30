@@ -4,11 +4,12 @@
 
 #include <iostream>
 #include "iniFileManager.h"
+
 using namespace std;
 
 
-iniFileManager ::iniFileManager(string filenName) {
-this->fileName = filenName;
+iniFileManager::iniFileManager(string filenName) {
+    this->fileName = filenName;
 }
 
 iniFileManager::~iniFileManager() {
@@ -30,10 +31,11 @@ string iniFileManager::getValue(string section, string parameter) {
 
 void iniFileManager::setStringValue(string section, string parameter, string newValue) {
     bool found = false;
-    for (auto&it : file[section]) {
+    for (auto &it : file[section]) {
         if (it.first == parameter) {
             found = true;
-        }}
+        }
+    }
     if (found) {
         std::cout << "ATTENZIONE: più valori inseriti per il parametro " << parameter
                   << " premere s per continuare e inserire l'ultimo valore immesso " << std::endl;
@@ -41,45 +43,44 @@ void iniFileManager::setStringValue(string section, string parameter, string new
         std::cin >> substitute;
         if (substitute == "s")
             file[section][parameter] = newValue;
-    }
-    else
+    } else
         file[section][parameter] = newValue;
 }
 
 void iniFileManager::setIntValue(string section, string parameter, int newValue) {
     bool found = false;
-    for (auto&it : file[section]) {
+    for (auto &it : file[section]) {
         if (it.first == parameter) {
             found = true;
-        }}
-        if (found) {
-            std::cout << "ATTENZIONE: più valori inseriti per il parametro "<< parameter
-                      << " premere s per continuare e inserire l'ultimo valore immesso " << std::endl;
-            string substitute;
-            std::cin >> substitute;
-            if (substitute == "s")
-                file[section][parameter] = to_string(newValue);
         }
-        else
-            file[section][parameter] = to_string(newValue);
-
-}
-
-void iniFileManager::setFloatValue(string section, string parameter, float newValue) {
-    bool found = false;
-    for (auto&it : file[section]) {
-        if (it.first == parameter) {
-            found = true;
-        }}
+    }
     if (found) {
-        std::cout << "ATTENZIONE: più valori inseriti per il parametro "<< parameter
+        std::cout << "ATTENZIONE: più valori inseriti per il parametro " << parameter
                   << " premere s per continuare e inserire l'ultimo valore immesso " << std::endl;
         string substitute;
         std::cin >> substitute;
         if (substitute == "s")
             file[section][parameter] = to_string(newValue);
+    } else
+        file[section][parameter] = to_string(newValue);
+
+}
+
+void iniFileManager::setFloatValue(string section, string parameter, float newValue) {
+    bool found = false;
+    for (auto &it : file[section]) {
+        if (it.first == parameter) {
+            found = true;
+        }
     }
-    else
+    if (found) {
+        std::cout << "ATTENZIONE: più valori inseriti per il parametro " << parameter
+                  << " premere s per continuare e inserire l'ultimo valore immesso " << std::endl;
+        string substitute;
+        std::cin >> substitute;
+        if (substitute == "s")
+            file[section][parameter] = to_string(newValue);
+    } else
         file[section][parameter] = to_string(newValue);
 
 }
@@ -107,29 +108,27 @@ void iniFileManager::putToNull(string section, string parameter) {
 
 bool iniFileManager::removeSection(string section) {
     bool found = false;
-    for (auto & it: file) {
+    for (auto &it: file) {
         if (it.first == section)
             found = true;
     }
-    if (found){
+    if (found) {
         file.erase(section);
-    return true;
-    }
-    else
+        return true;
+    } else
         return false;
 }
 
 bool iniFileManager::removeParameter(string section, string parameter) {
     bool found = false;
-    for (auto & it: file[section]) {
+    for (auto &it: file[section]) {
         if (it.first == parameter)
             found = true;
     }
-    if (found){
+    if (found) {
         file[section].erase(parameter);
         return true;
-    }
-    else
+    } else
         return false;
 }
 
@@ -140,7 +139,7 @@ void iniFileManager::printSections() {
 }
 
 void iniFileManager::printParameters(string section) {
-    std::cout << "Parametri della sezione" << section<< ":" << std::endl;
+    std::cout << "Parametri della sezione" << section << ":" << std::endl;
     for (auto &it:file[section])
         std::cout << it.first << std::endl;
 }
@@ -151,7 +150,7 @@ void iniFileManager::printValue(string section, string parameter) {
 
 void iniFileManager::printAll() {
     for (auto &it:file) {
-        std::cout << "[" <<it.first << "]" << std::endl;
+        std::cout << "[" << it.first << "]" << std::endl;
         for (auto &secondIterator : file[it.first])
             std::cout << secondIterator.first << " = " << secondIterator.second << std::endl;
     }
@@ -162,13 +161,13 @@ void iniFileManager::reset() {
     string clear;
     cin >> clear;
     if (clear == "S")
-    file.clear();
+        file.clear();
 }
 
 int iniFileManager::numParameters(string section) {
     int count = 0;
     for (auto &it: file[section])
-        count ++;
+        count++;
     std::cout << "" << std::endl;
     return count;
 }
@@ -184,6 +183,5 @@ int iniFileManager::numParameters(string section) {
 
 
 
-//add comment
 
 
