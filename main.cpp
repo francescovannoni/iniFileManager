@@ -21,4 +21,5 @@ int main() {
     std::cout << "Numero parametri della terza sezione: " << numberOfParameters << std::endl;
 
 
+    file.close();
 }

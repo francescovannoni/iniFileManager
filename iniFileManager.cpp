@@ -10,6 +10,7 @@ using namespace std;
 
 iniFileManager::iniFileManager(string filenName) {
     this->fileName = filenName;
+    this->newProject.open(fileName);
 }
 
 iniFileManager::~iniFileManager() {
@@ -173,9 +174,10 @@ int iniFileManager::numParameters(string section) {
 }
 
 
+void iniFileManager::end() {
+    this->newProject.close();
 
-
-
+}
 
 
 
