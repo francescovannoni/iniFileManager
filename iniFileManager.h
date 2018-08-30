@@ -7,6 +7,7 @@
 
 #include <string>
 #include <map>
+#include <fstream>
 
 using namespace std;
 
@@ -52,9 +53,13 @@ public:
 
     virtual ~iniFileManager();
 
+    void end();
+
+    void checkIsOpen() throw (std::runtime_error);
 
 private:
     string fileName;
+    fstream newProject;
     map<string, map<string, string>> file;
 };
 

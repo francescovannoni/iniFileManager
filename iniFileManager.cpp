@@ -10,6 +10,7 @@ using namespace std;
 
 iniFileManager::iniFileManager(string filenName) {
     this->fileName = filenName;
+    this->newProject.open(fileName);
 }
 
 iniFileManager::~iniFileManager() {
@@ -173,9 +174,15 @@ int iniFileManager::numParameters(string section) {
 }
 
 
+void iniFileManager::end() {
+    this->newProject.close();
 
+}
 
-
+void iniFileManager::checkIsOpen() throw (std::runtime_error) {
+    if (!newProject.is_open())
+        throw std::runtime_error("file doesn't exist");
+}
 
 
 
