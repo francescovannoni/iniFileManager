@@ -15,7 +15,7 @@ TEST(iniFileManagerTest, ConstructorTest) {
 TEST(iniFileManagerTest, StringGetterSetterTest) {
     iniFileManager file("Prova.ini");
     file.setStringValue("Sezione 1", "Parametro 1", "valore 1");
-    ASSERT_EQ(file.getValue("Sezione 1", "Parametro 1"), "Parametro 1");
+    ASSERT_EQ(file.getValue("Sezione 1", "Parametro 1"), "valore 1");
 }
 
 TEST(iniFileManagerTest, IntGetterSetterTest) {
@@ -26,9 +26,10 @@ TEST(iniFileManagerTest, IntGetterSetterTest) {
 
 TEST(iniFileManagerTest, FloatGetterSetterTest) {
     iniFileManager file("Prova.ini");
-    file.setFloatValue("Sezione 2", "Parametro 1", 5.9);
-    ASSERT_EQ(stof(file.getValue("Sezione 2", "Parametro 1")), 5.9);
+    file.setFloatValue("Sezione 2", "Parametro 1", 5.98);
+    ASSERT_EQ(stof(file.getValue("Sezione 2", "Parametro 1")), 5.98);
 }
+
 
 TEST(iniFileManagerTest, BoolGetterSetterTest) {
     iniFileManager file("Prova.ini");

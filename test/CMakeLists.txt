@@ -10,4 +10,4 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 set(SOURCE_FILES test.cpp)
 add_executable(test runAllTest.cpp ${SOURCE_FILES})
-target_link_libraries(test ${GTEST_BOTH_LIBRARIES} core)
+target_link_libraries(test gtest gtest_main core)
