@@ -55,6 +55,7 @@ public:
 
     void end();
 
+    void checkIsOpen() throw (std::runtime_error);
 
 private:
     string fileName;

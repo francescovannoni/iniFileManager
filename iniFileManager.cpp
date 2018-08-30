@@ -179,6 +179,11 @@ void iniFileManager::end() {
 
 }
 
+void iniFileManager::checkIsOpen() throw (std::runtime_error) {
+    if (!newProject.is_open())
+        throw std::runtime_error("file doesn't exist");
+}
+
 
 
 

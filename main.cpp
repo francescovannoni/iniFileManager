@@ -11,6 +11,8 @@ int main() {
     file.setBoolValue("Sezione 1", "Parametro 2", false);
     file.setStringValue("Sezione 1", "Parametro 2", "Valore 1");
 
+    file.checkIsOpen();
+
     file.addSection("Sezione 3");
     file.addParameter("Sezione 2", "Parametro 3");
     file.putToNull("Sezione 2", "Parametro 1");
@@ -20,6 +22,5 @@ int main() {
     int numberOfParameters = file.numParameters("Sezione 3");
     std::cout << "Numero parametri della terza sezione: " << numberOfParameters << std::endl;
 
-
-    file.close();
+    file.end();
 }
