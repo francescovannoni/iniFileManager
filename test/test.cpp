@@ -27,7 +27,7 @@ TEST(iniFileManagerTest, IntGetterSetterTest) {
 TEST(iniFileManagerTest, FloatGetterSetterTest) {
     iniFileManager file("Prova.ini");
     file.setFloatValue("Sezione 2", "Parametro 1", 5.98);
-    ASSERT_EQ(stof(file.getValue("Sezione 2", "Parametro 1")), 5.98);
+    ASSERT_TRUE(abs(stof(file.getValue("Sezione 2", "Parametro 1")) - 5.98)<0.0001);
 }
 
 
