@@ -1,5 +1,6 @@
 #include <iostream>
 #include "iniFileManager.h"
+
 using namespace std;
 
 int main() {

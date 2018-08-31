@@ -8,8 +8,8 @@
 using namespace std;
 
 
-iniFileManager::iniFileManager(string filenName) {
-    this->fileName = filenName;
+iniFileManager::iniFileManager(string fileName) {
+    this->fileName = fileName;
     this->newProject.open(fileName);
 }
 
@@ -179,7 +179,7 @@ void iniFileManager::end() {
 
 }
 
-void iniFileManager::checkIsOpen() throw (std::runtime_error) {
+void iniFileManager::checkIsOpen() throw(std::runtime_error) {
     if (!newProject.is_open())
         throw std::runtime_error("file doesn't exist");
 }

@@ -13,7 +13,7 @@ using namespace std;
 
 class iniFileManager {
 public:
-    iniFileManager(string fileName);
+    explicit iniFileManager(string fileName);
 
     void setFileName(string fileName);
 
@@ -55,7 +55,7 @@ public:
 
     void end();
 
-    void checkIsOpen() throw (std::runtime_error);
+    void checkIsOpen() throw(std::runtime_error);
 
 private:
     string fileName;
