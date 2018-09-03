@@ -9,6 +9,7 @@
 #include <map>
 #include <fstream>
 
+
 using namespace std;
 
 class iniFileManager {
@@ -57,10 +58,14 @@ public:
 
     void checkIsOpen() throw(std::runtime_error);
 
+    void addComment (string section, string commentText, bool inSection = false);
+
 private:
     string fileName;
     fstream newProject;
     map<string, map<string, string>> file;
+    int commentNum;
+    int maxNumOfComment;
 };
 
 

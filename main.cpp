@@ -18,10 +18,12 @@ int main() {
     file.addParameter("Sezione 2", "Parametro 3");
     file.putToNull("Sezione 2", "Parametro 1");
 
+    file.addComment("ciao", "ciao");
     file.printAll();
 
     int numberOfParameters = file.numParameters("Sezione 3");
     std::cout << "Numero parametri della terza sezione: " << numberOfParameters << std::endl;
 
     file.end();
+
 }

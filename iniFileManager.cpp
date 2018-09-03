@@ -11,6 +11,7 @@ using namespace std;
 iniFileManager::iniFileManager(string fileName) {
     this->fileName = fileName;
     this->newProject.open(fileName);
+    this->maxNumOfComment = 100;
 }
 
 iniFileManager::~iniFileManager() {
@@ -151,11 +152,24 @@ void iniFileManager::printValue(string section, string parameter) {
 
 void iniFileManager::printAll() {
     for (auto &it:file) {
+        if(it.first == "commenti")
+            for (auto &secondIterator : file["commenti"])
+                std::cout << secondIterator.second << std::endl;
+            else{
         std::cout << "[" << it.first << "]" << std::endl;
-        for (auto &secondIterator : file[it.first])
+        for (auto &secondIterator : file[it.first]){
+            int value = 0;
+            bool commentFound = false;
+            while (value < maxNumOfComment && commentFound == false ) {
+            if (secondIterator.first == to_string(value)){
+                commentFound = true;
+                std::cout << secondIterator.second << std::endl;}
+            else
+            value ++;}
+            if (commentFound == false)
             std::cout << secondIterator.first << " = " << secondIterator.second << std::endl;
-    }
-}
+
+}}}}
 
 void iniFileManager::reset() {
     std::cout << "Vuoi davvero eliminare tutto? [S/N] " << std::endl;
@@ -185,9 +199,17 @@ void iniFileManager::checkIsOpen() throw(std::runtime_error) {
 }
 
 
-
-
-
+void iniFileManager::addComment(string section, string commentText, bool inSection) {
+    string parameter;
+    std::cout << "Premere 1 per inserire il commento" << std::endl;
+    std::cin >> parameter;
+    commentNum += stoi(parameter);
+    parameter = to_string(commentNum);
+    if (inSection)
+       file[section][parameter] = ";" + commentText;
+    else
+        file["commenti"][parameter] = ";" + commentText;
+}
 
 
 
