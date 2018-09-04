@@ -8,10 +8,11 @@
 using namespace std;
 
 
-iniFileManager::iniFileManager(string fileName) {
+iniFileManager::iniFileManager(string fileName, int maxNumOfComments) {
     this->fileName = fileName;
     this->newProject.open(fileName);
-    this->maxNumOfComment = 100;
+    this->maxNumOfComment = maxNumOfComments;
+    this->currentComment = 0;
 }
 
 iniFileManager::~iniFileManager() {
@@ -160,13 +161,13 @@ void iniFileManager::printAll() {
         for (auto &secondIterator : file[it.first]){
             int value = 0;
             bool commentFound = false;
-            while (value < maxNumOfComment && commentFound == false ) {
+            while (value < maxNumOfComment && !commentFound) {
             if (secondIterator.first == to_string(value)){
                 commentFound = true;
                 std::cout << secondIterator.second << std::endl;}
             else
             value ++;}
-            if (commentFound == false)
+            if (!commentFound)
             std::cout << secondIterator.first << " = " << secondIterator.second << std::endl;
 
 }}}}
@@ -203,8 +204,8 @@ void iniFileManager::addComment(string section, string commentText, bool inSecti
     string parameter;
     std::cout << "Premere 1 per inserire il commento" << std::endl;
     std::cin >> parameter;
-    commentNum += stoi(parameter);
-    parameter = to_string(commentNum);
+    currentComment += stoi(parameter);
+    parameter = to_string(currentComment);
     if (inSection)
        file[section][parameter] = ";" + commentText;
     else

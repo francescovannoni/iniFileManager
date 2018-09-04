@@ -14,7 +14,7 @@ using namespace std;
 
 class iniFileManager {
 public:
-    explicit iniFileManager(string fileName);
+    iniFileManager(string fileName, int maxNumOfComments = 100);
 
     void setFileName(string fileName);
 
@@ -64,7 +64,7 @@ private:
     string fileName;
     fstream newProject;
     map<string, map<string, string>> file;
-    int commentNum;
+    int currentComment;
     int maxNumOfComment;
 };
 
