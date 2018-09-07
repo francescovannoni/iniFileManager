@@ -208,6 +208,24 @@ void iniFileManager::checkIsOpen() throw(std::runtime_error) {
 
 }
 
+bool iniFileManager::findSection(string section) {
+    bool found = false;
+    for (auto &it: file) {
+        if (it.first == section)
+            found = true;
+    }
+    return found;
+}
+
+bool iniFileManager::findParameter(string section, string parameter) {
+    bool found = false;
+    for (auto &it: file[section]) {
+        if (it.first == parameter)
+            found = true;
+    }
+    return found;
+}
+
 
 
 

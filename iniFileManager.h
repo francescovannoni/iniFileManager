@@ -38,6 +38,10 @@ public:
 
     void addParameter(string section, string parameterName);
 
+    bool findSection(string section);
+
+    bool findParameter(string section, string parameter);
+
     void printSections();
 
     void printParameters(string section);
@@ -58,7 +62,7 @@ public:
 
     virtual ~iniFileManager();
 
-    void addComment (string section, string commentText, bool inSection = false);
+    void addComment(string section, string commentText, bool inSection = false);
 
     void modify(string section, string parameter, string newValue);
 

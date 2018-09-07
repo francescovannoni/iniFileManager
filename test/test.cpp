@@ -27,7 +27,7 @@ TEST(iniFileManagerTest, IntGetterSetterTest) {
 TEST(iniFileManagerTest, FloatGetterSetterTest) {
     iniFileManager file("Prova.ini");
     file.setFloatValue("Sezione 2", "Parametro 1", 5.98);
-    ASSERT_TRUE(abs(stof(file.getValue("Sezione 2", "Parametro 1")) - 5.98)<0.0001);
+    ASSERT_TRUE(abs(stof(file.getValue("Sezione 2", "Parametro 1")) - 5.98) < 0.0001);
 }
 
 
@@ -50,7 +50,7 @@ TEST(iniFileManagerTest, NumParametersTest) {
     ASSERT_EQ(file.numParameters("Sezione 4"), 2);
 }
 
-TEST(iniFileManagerTest, addCommentTest){
+TEST(iniFileManagerTest, addCommentTest) {
     iniFileManager file("Prova.ini");
     file.addSection("Sezione 1");
     file.addComment("Sezione 1", "commento nella sezione", true);
@@ -58,16 +58,30 @@ TEST(iniFileManagerTest, addCommentTest){
     ASSERT_EQ(file.getValue("Sezione 1", "1"), "; commento nella sezione");
 }
 
-TEST(iniFileManagerException, SectionsTest) {
+TEST(iniFileManagerTest, SectionsTest) {
     iniFileManager file("Prova.ini");
     file.addSection("Sezione prova rimozione");
-    EXPECT_THROW(file.removeSection("Sezione prova rimozione 2"), std::runtime_error);
+    file.removeSection("Sezione prova rimozione");
+    ASSERT_EQ(file.findSection("Seconda prova rimozione"), false);
 }
 
-TEST(iniFileManagerException, ParameterTest) {
+TEST(iniFileManagerTest, ParameterTest) {
+    iniFileManager file("Prova.ini");
+    file.addParameter("Sezione", "Parametro");
+    file.removeParameter("Sezione", "Parametro");
+    ASSERT_EQ(file.findParameter("Sezione", "Parametro"), false);
+}
+
+TEST(iniFileManagerException, ParameterTestFail) {
     iniFileManager file("Prova.ini");
     file.addParameter("Sezione", "Parametro");
     EXPECT_THROW(file.removeParameter("Sezione", "Parametro 2"), std::runtime_error);
+}
+
+TEST(iniFileManagerException, SectionsTestFail) {
+    iniFileManager file("Prova.ini");
+    file.addSection("Sezione prova rimozione");
+    EXPECT_THROW(file.removeSection("Sezione prova rimozione 2"), std::runtime_error);
 }
 
 
@@ -77,7 +91,6 @@ TEST(iniFileManagerException, IsOpenTest) {
     EXPECT_THROW(file.checkIsOpen(), std::runtime_error);
 }
 
-//controlla come hai lavorato con commenti
 
 
 
