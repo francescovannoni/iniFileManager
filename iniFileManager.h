@@ -9,11 +9,12 @@
 #include <map>
 #include <fstream>
 
+
 using namespace std;
 
 class iniFileManager {
 public:
-    explicit iniFileManager(string fileName);
+    iniFileManager(string fileName, int maxNumOfComments = 100);
 
     void setFileName(string fileName);
 
@@ -29,9 +30,9 @@ public:
 
     void setBoolValue(string section, string parameter, bool newValue);
 
-    bool removeSection(string section);
+    void removeSection(string section);
 
-    bool removeParameter(string section, string parameter);
+    void removeParameter(string section, string parameter);
 
     void addSection(string sectionName);
 
@@ -45,6 +46,10 @@ public:
 
     void printAll();
 
+    void end();
+
+    void checkIsOpen() throw(std::runtime_error);
+
     void reset();
 
     void putToNull(string section, string parameter);
@@ -53,14 +58,16 @@ public:
 
     virtual ~iniFileManager();
 
-    void end();
+    void addComment (string section, string commentText, bool inSection = false);
 
-    void checkIsOpen() throw(std::runtime_error);
+    void modify(string section, string parameter, string newValue);
 
 private:
     string fileName;
-    fstream newProject;
     map<string, map<string, string>> file;
+    int currentComment;
+    int maxNumOfComment;
+    fstream newProject;
 };
 
 

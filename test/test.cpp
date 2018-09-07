@@ -37,20 +37,6 @@ TEST(iniFileManagerTest, BoolGetterSetterTest) {
     ASSERT_EQ(file.getValue("Sezione 3", "Parametro 1"), "false");
 }
 
-//add and remove section and parameter
-TEST(iniFileManagerTest, SectionsTest) {
-    iniFileManager file("Prova.ini");
-    file.addSection("Sezione prova rimozione");
-    ASSERT_EQ(file.removeSection("Sezione prova rimozione"), true);
-}
-
-TEST(iniFileManagerTest, ParameterTest) {
-    iniFileManager file("Prova.ini");
-    file.addParameter("Sezione", "Parametro");
-    ASSERT_EQ(file.removeParameter("Sezione", "Parametro"), true);
-}
-
-
 TEST(iniFileManagerTest, PutToNullTest) {
     iniFileManager file("Prova.ini");
     file.putToNull("Sezione 4", "Parametro 6");
@@ -64,12 +50,35 @@ TEST(iniFileManagerTest, NumParametersTest) {
     ASSERT_EQ(file.numParameters("Sezione 4"), 2);
 }
 
-TEST(iniFileManagerTest, IsOpenException) {
+TEST(iniFileManagerTest, addCommentTest){
+    iniFileManager file("Prova.ini");
+    file.addSection("Sezione 1");
+    file.addComment("Sezione 1", "commento nella sezione", true);
+    file.addComment("nessuna sezione", "commento fuori sezione", false);
+    ASSERT_EQ(file.getValue("Sezione 1", "1"), "; commento nella sezione");
+}
+
+TEST(iniFileManagerException, SectionsTest) {
+    iniFileManager file("Prova.ini");
+    file.addSection("Sezione prova rimozione");
+    EXPECT_THROW(file.removeSection("Sezione prova rimozione 2"), std::runtime_error);
+}
+
+TEST(iniFileManagerException, ParameterTest) {
+    iniFileManager file("Prova.ini");
+    file.addParameter("Sezione", "Parametro");
+    EXPECT_THROW(file.removeParameter("Sezione", "Parametro 2"), std::runtime_error);
+}
+
+
+TEST(iniFileManagerException, IsOpenTest) {
     iniFileManager file("Prova.ini");
     file.end();
     EXPECT_THROW(file.checkIsOpen(), std::runtime_error);
-
 }
+
+//controlla come hai lavorato con commenti
+
 
 
 
