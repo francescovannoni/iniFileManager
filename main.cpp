@@ -12,18 +12,20 @@ int main() {
     file.setBoolValue("Sezione 1", "Parametro 2", false);
     file.setStringValue("Sezione 1", "Parametro 2", "Valore 1");
 
-    file.checkIsOpen();
+    //file.checkIsOpen();
 
     file.addSection("Sezione 3");
     file.addParameter("Sezione 2", "Parametro 3");
     file.putToNull("Sezione 2", "Parametro 1");
 
+    bool ciao = file.removeParameter("Sezione 1", "Parametro 100");
+    std::cout << ciao << std::endl;
     file.addComment("ciao", "ciao");
     file.printAll();
 
     int numberOfParameters = file.numParameters("Sezione 3");
     std::cout << "Numero parametri della terza sezione: " << numberOfParameters << std::endl;
 
-    file.end();
+    //file.end();
 
 }
