@@ -105,10 +105,10 @@ void iniFileManager::removeSection(string section) {
     if (found) {
         file.erase(section);
     } else
-       throw std::runtime_error("Section doesn't exist");
+        throw std::runtime_error("Section doesn't exist");
 }
 
-void iniFileManager::removeParameter(string section, string parameter)  {
+void iniFileManager::removeParameter(string section, string parameter) {
     bool found = false;
     for (auto &it: file[section]) {
         if (it.first == parameter)
@@ -116,9 +116,9 @@ void iniFileManager::removeParameter(string section, string parameter)  {
     }
     if (found) {
         file[section].erase(parameter);
-    } else{
+    } else {
         throw std::runtime_error("Parameter doesn't exist");
-        }
+    }
 }
 
 void iniFileManager::printSections() {
@@ -139,24 +139,28 @@ void iniFileManager::printValue(string section, string parameter) {
 
 void iniFileManager::printAll() {
     for (auto &it:file) {
-        if(it.first == "commenti")
+        if (it.first == "commenti")
             for (auto &secondIterator : file["commenti"])
                 std::cout << secondIterator.second << std::endl;
-            else{
-        std::cout << "[" << it.first << "]" << std::endl;
-        for (auto &secondIterator : file[it.first]){
-            int value = 0;
-            bool commentFound = false;
-            while (value < maxNumOfComment && !commentFound) {
-            if (secondIterator.first == to_string(value)){
-                commentFound = true;
-                std::cout << secondIterator.second << std::endl;}
-            else
-            value ++;}
-            if (!commentFound)
-            std::cout << secondIterator.first << " = " << secondIterator.second << std::endl;
+        else {
+            std::cout << "[" << it.first << "]" << std::endl;
+            for (auto &secondIterator : file[it.first]) {
+                int value = 0;
+                bool commentFound = false;
+                while (value < maxNumOfComment && !commentFound) {
+                    if (secondIterator.first == to_string(value)) {
+                        commentFound = true;
+                        std::cout << secondIterator.second << std::endl;
+                    } else
+                        value++;
+                }
+                if (!commentFound)
+                    std::cout << secondIterator.first << " = " << secondIterator.second << std::endl;
 
-}}}}
+            }
+        }
+    }
+}
 
 void iniFileManager::reset() {
     std::cout << "Vuoi davvero eliminare tutto? [S/N] " << std::endl;
@@ -175,17 +179,14 @@ int iniFileManager::numParameters(string section) {
 }
 
 
-
 void iniFileManager::addComment(string section, string commentText, bool inSection) {
     string parameter;
-    std::cout << "Premere 1 per inserire il commento" << std::endl;
-    std::cin >> parameter;
-    currentComment += stoi(parameter);
+    currentComment += 1;
     parameter = to_string(currentComment);
     if (inSection)
-       file[section][parameter] = ";" + commentText;
+        file[section][parameter] = "; " + commentText;
     else
-        file["commenti"][parameter] = ";" + commentText;
+        file["commenti"][parameter] = "; " + commentText;
 }
 
 void iniFileManager::modify(string section, string parameter, string newValue) {
@@ -201,7 +202,7 @@ void iniFileManager::end() {
     this->newProject.close();
 }
 
-void iniFileManager::checkIsOpen() throw (std::runtime_error){
+void iniFileManager::checkIsOpen() throw(std::runtime_error) {
     if (!newProject.is_open())
         throw std::runtime_error("file doesn't exist");
 

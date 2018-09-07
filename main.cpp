@@ -18,8 +18,6 @@ int main() {
     file.addParameter("Sezione 2", "Parametro 3");
     file.putToNull("Sezione 2", "Parametro 1");
 
-    bool ciao = file.removeParameter("Sezione 1", "Parametro 100");
-    std::cout << ciao << std::endl;
     file.addComment("ciao", "ciao");
     file.printAll();
 
