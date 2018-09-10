@@ -33,46 +33,21 @@ string iniFileManager::getValue(string section, string parameter) {
 
 
 void iniFileManager::setStringValue(string section, string parameter, string newValue) {
-    bool found = false;
-    for (auto &it : file[section]) {
-        if (it.first == parameter) {
-            found = true;
-        }
-    }
-    if (found) {
-        modify(section, parameter, newValue);
-    } else
+    auto it = file[section].find(parameter);
+    if (it == file[section].end())
         file[section][parameter] = newValue;
+    else
+        modify(section, parameter, newValue);
 }
 
 void iniFileManager::setIntValue(string section, string parameter, int newValue) {
-    bool found = false;
     string value = to_string(newValue);
-    for (auto &it : file[section]) {
-        if (it.first == parameter) {
-            found = true;
-        }
-    }
-    if (found) {
-        modify(section, parameter, value);
-    } else
-        file[section][parameter] = to_string(newValue);
-
+    setStringValue(section, parameter, value);
 }
 
 void iniFileManager::setFloatValue(string section, string parameter, float newValue) {
-    bool found = false;
     string value = to_string(newValue);
-    for (auto &it : file[section]) {
-        if (it.first == parameter) {
-            found = true;
-        }
-    }
-    if (found) {
-        modify(section, parameter, value);
-    } else
-        file[section][parameter] = to_string(newValue);
-
+    setStringValue(section, parameter, value);
 }
 
 void iniFileManager::setBoolValue(string section, string parameter, bool newValue) {
@@ -97,28 +72,19 @@ void iniFileManager::putToNull(string section, string parameter) {
 }
 
 void iniFileManager::removeSection(string section) {
-    bool found = false;
-    for (auto &it: file) {
-        if (it.first == section)
-            found = true;
-    }
-    if (found) {
+    auto it = file.find(section);
+    if (it != file.end())
         file.erase(section);
-    } else
+    else
         throw std::runtime_error("Section doesn't exist");
 }
 
 void iniFileManager::removeParameter(string section, string parameter) {
-    bool found = false;
-    for (auto &it: file[section]) {
-        if (it.first == parameter)
-            found = true;
-    }
-    if (found) {
+    auto it = file[section].find(parameter);
+    if (it != file[section].end())
         file[section].erase(parameter);
-    } else {
+    else
         throw std::runtime_error("Parameter doesn't exist");
-    }
 }
 
 void iniFileManager::printSections() {
@@ -210,19 +176,18 @@ void iniFileManager::checkIsOpen() throw(std::runtime_error) {
 
 bool iniFileManager::findSection(string section) {
     bool found = false;
-    for (auto &it: file) {
-        if (it.first == section)
-            found = true;
-    }
+    auto it = file.find(section);
+    if (it != file.end())
+        found = true;
     return found;
 }
 
 bool iniFileManager::findParameter(string section, string parameter) {
     bool found = false;
-    for (auto &it: file[section]) {
-        if (it.first == parameter)
-            found = true;
-    }
+    auto it = file[section].find(parameter);
+    if (it != file[section].end())
+        found = true;
+
     return found;
 }
 
